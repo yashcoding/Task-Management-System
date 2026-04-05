@@ -28,8 +28,8 @@ model Task {
   id          Int        @id @default(autoincrement())
   title       String
   description String?
-  status      TaskStatus @default(PENDING)
-  priority    Priority   @default(MEDIUM)
+  status      String @default("PENDING")
+  priority    String @default("MEDIUM")
   dueDate     DateTime?
   userId      Int
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -48,16 +48,4 @@ model RefreshToken {
   createdAt DateTime @default(now())
 
   @@map("refresh_tokens")
-}
-
-enum TaskStatus {
-  PENDING
-  IN_PROGRESS
-  DONE
-}
-
-enum Priority {
-  LOW
-  MEDIUM
-  HIGH
 }
